@@ -92,7 +92,7 @@ export default {
         priceCount: 0,
         goodsCount: 0,
       },
-      
+
     };
   },
   mounted() {
@@ -196,7 +196,7 @@ export default {
   }
 }
 .baseInfo {
-  /deep/ .el-card__header {
+  ::v-deep .el-card__header {
     padding: 15px 20px !important;
   }
 }

@@ -3,7 +3,7 @@
     <div class="dashboard-editor-container">
       <yshop-info />
       <!-- <panel-group /> -->
-  
+
 
       <div class="divBox">
         <el-card :bordered="false" dis-hover>
@@ -38,7 +38,7 @@
               class="ivu-mb mb10 dashboard-console-visit"
             >
               <span class="ivu-pl-8">本月成交额</span>
-            
+
               <bar-chart />
             </el-col>
             <el-col
@@ -103,14 +103,14 @@ export default {
 }
 
 .acea-row {
-  /deep/.el-avatar--small {
+  ::v-deep .el-avatar--small {
     width: 22px;
     height: 22px;
     line-height: 22px;
   }
 }
 .checkTime {
-  /deep/.el-radio__input {
+  ::v-deep .el-radio__input {
     display: none;
   }
 }
@@ -122,7 +122,7 @@ export default {
   // padding: 0 20px !important;
 }
 .dashboard-console-visit {
-  /deep/.el-card__header {
+  ::v-deep .el-card__header {
     padding: 14px 20px !important;
   }
   ul {
