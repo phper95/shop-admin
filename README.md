@@ -1,23 +1,11 @@
-<h1 style="text-align: center">yshop-gin意象商城后台管理系统</h1>
+<h1 style="text-align: center">shop商城后台管理系统</h1>
 
 
 
 
 #### 项目简介
-yshop-gin基于当前流行技术组合的前后端商城管理系统： yshop-gin意象商城后台管理系统(目前版本v1.2)基于当前流行技术组合的前后端商城管理系统：
+shop基于当前流行技术组合的前后端商城管理系统： shop商城后台管理系统(目前版本v1.2)基于当前流行技术组合的前后端商城管理系统：
 Gin+Gorm+Casbin+Jwt+Redis+Mysql8+Vue 的前后端分离电商管理系统，权限控制采用RBAC，支持商城商品加入购物车、下单、评价、支付（微信支付与余额支付）、搜索、地址管理、快递鸟查询、多级分类，商品管理、商品sku、图片素材、数据字典与数据权限管理，支持动态路由等
-
-#### 项目文档（还在完善中...，小伙伴记得star）
-
- 文档地址：[https://gitee.com/guchengwuyue/yshop-gin/wikis/pages](http://gitee.com/guchengwuyue/yshop-gin/wikis/pages)
-
-
-#### 项目源码
-
-|     |   后端源码  |   后台前端源码  |  PC商城前端源码  |
-|---  |--- | --- | --- |
-|  码云  |  https://gitee.com/guchengwuyue/yshop-gin   |  https://gitee.com/guchengwuyue/yshop-gin-vue   |  https://gitee.com/guchengwuyue/yshop-gin-pc   |
-|  github   | https://github.com/guchengwuyue/yshop-gin  |  https://github.com/guchengwuyue/yshop-gin-vue | https://gitee.com/guchengwuyue/yshop-gin-pc   |
 
 #### 已经实现pc商城功能：
 - 首页轮播图

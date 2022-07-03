@@ -3,7 +3,7 @@
     <div style="display:flex;justify-content:space-between;align-items: center;">
       <div style="padding: 0 60px 0 0">
         <h3 style="color: #ffffff;font-size: 24px;padding: 0;margin-bottom: 10px">
-          yshop-gin商城管理后台系统
+          shop商城管理后台系统
         </h3>
         <ul style="margin: 0;color: #ffffff;font-size: 15px;line-height: 25px;padding-left: 20px">
           <li>Gin1.7.x</li>
@@ -21,7 +21,7 @@
       </div>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" label-position="left" label-width="0px" class="login-form">
       <h3 class="title">
-        yshop-gin商城后台管理系统-1.2
+        shop商城后台管理系统-1.2
       </h3>
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
@@ -123,17 +123,17 @@ export default {
           code: this.loginForm.code,
           uuid: this.loginForm.uuid
         }
-    
+
         if (valid) {
           this.loading = true
           if (user.rememberMe) {
             Cookies.set('username', user.username, { expires: Config.passCookieExpires })
             Cookies.set('password', user.password, { expires: Config.passCookieExpires })
-        
+
           } else {
             Cookies.remove('username')
             Cookies.remove('password')
-       
+
           }
           this.$store.dispatch('Login', user).then(() => {
             this.loading = false

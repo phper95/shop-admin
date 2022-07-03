@@ -25,7 +25,7 @@ export default {
   },
   data() {
     return {
-      title: 'yshop-gin商城系统',
+      title: 'shop商城系统',
       logo: Logo
     }
   }
