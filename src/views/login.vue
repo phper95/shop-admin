@@ -16,7 +16,7 @@
           <li>Wechat</li>
         </ul>
         <h3 style="color: #ffffff;">
-          后台地址:https://go.yixiang.co
+          后台地址:http://localhost/shop/admin
         </h3>
       </div>
     <el-form ref="loginForm" :model="loginForm" :rules="loginRules" label-position="left" label-width="0px" class="login-form">

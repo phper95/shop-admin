@@ -42,9 +42,9 @@ module.exports = {
   /**
    * 底部文字，支持html语法
    */
-  footerTxt: '© 2019-2021 yixiang.co <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">All Rights Reserved</a>',
+  footerTxt: '© 2022-2022 shop.com <a href="http://www.apache.org/licenses/LICENSE-2.0" target="_blank">All Rights Reserved</a>',
   /**
    * 备案号
    */
-  caseNumber: '豫ICP备17049587-2号'
+  caseNumber: 'xxx号'
 }
