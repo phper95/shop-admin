@@ -64,7 +64,7 @@
   import udOperation from '@crud/UD.operation'
   import MaterialList from "@/components/material";
 
-  const defaultForm = {id: null, ruleName: null, ruleValue: null, createTime: null, updateTime: null, isDel: null}
+  const defaultForm = {id: null, ruleName: null, ruleValue: null, createTime: null, updateTime: null, is_del: null}
   export default {
     name: 'ruleForm',
     components: {crudOperation, rrOperation, udOperation, MaterialList},

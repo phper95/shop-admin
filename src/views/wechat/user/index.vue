@@ -203,7 +203,7 @@ export default {
         id: data.id,
         account: data.account,
         pwd: data.pwd,
-        realName: data.realName,
+        real_name: data.real_name,
         birthday: data.birthday,
         cardId: data.cardId,
         mark: data.mark,

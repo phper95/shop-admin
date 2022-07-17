@@ -162,7 +162,7 @@ export default {
       _this.form = {
         key: data.key,
         result: data.result,
-        addTime: data.addTime
+        add_time: data.add_time
       }
       _this.dialog = true
     },

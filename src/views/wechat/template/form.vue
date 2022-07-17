@@ -44,7 +44,7 @@ export default {
         name: '',
         content: '',
         tempid: '',
-        addTime: '',
+        add_time: '',
         status: 1
       },
       rules: {
@@ -100,7 +100,7 @@ export default {
         name: '',
         content: '',
         tempid: '',
-        addTime: '',
+        add_time: '',
         status: ''
       }
     }

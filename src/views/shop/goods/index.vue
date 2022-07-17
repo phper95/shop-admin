@@ -40,22 +40,22 @@
           <a :href="scope.row.image" style="color: #42b983" target="_blank"><img :src="scope.row.image" alt="点击打开" class="el-avatar"></a>
         </template>
       </el-table-column>
-      <el-table-column prop="storeName" label="商品名称" />
-      <el-table-column prop="productCate.cateName" label="分类名称" />
+      <el-table-column prop="store_name" label="商品名称" />
+      <el-table-column prop="product_cate.cate_name" label="分类名称" />
       <el-table-column prop="price" label="商品价格" />
       <el-table-column prop="sales" label="销量" />
       <el-table-column prop="stock" label="库存" />
       <el-table-column label="状态" align="center">
         <template slot-scope="scope">
-          <div @click="onSale(scope.row.id,scope.row.isShow)">
-            <el-tag v-if="scope.row.isShow === 1" style="cursor: pointer" :type="''">已上架</el-tag>
+          <div @click="onSale(scope.row.id,scope.row.is_show)">
+            <el-tag v-if="scope.row.is_show === 1" style="cursor: pointer" :type="''">已上架</el-tag>
             <el-tag v-else style="cursor: pointer" :type=" 'info' ">已下架</el-tag>
           </div>
         </template>
       </el-table-column>
         <el-table-column  prop="createTime" label="创建时间">
           <template slot-scope="scope">
-            <span>{{ parseTime(scope.row.createTime) }}</span>
+            <span>{{ parseTime(scope.row.create_time) }}</span>
           </template>
         </el-table-column>
       <el-table-column label="操作" width="265px" align="center">
@@ -111,7 +111,7 @@ export default {
       delLoading: false,
       visible: false,
       queryTypeOptions: [
-        { key: 'storeName', display_name: '商品名称' }
+        { key: 'store_name', display_name: '商品名称' }
       ],
       isAttr: false,
       cateId: null,
@@ -147,7 +147,7 @@ export default {
     beforeInit() {
       this.url = 'shop/product'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, isShow: 1, isDel: 0,cateId: this.cateId  }
+      this.params = { page: this.page, size: this.size, sort: sort, is_show: 1, is_del: 0,cateId: this.cateId  }
       const query = this.query
       const value = query.value
       if (value) { this.params['blurry'] = value }
@@ -207,43 +207,43 @@ export default {
       _this.getCates()
       _this.form = {
         id: data.id,
-        merId: data.merId,
+        mer_id: data.mer_id,
         image: data.image,
-        sliderImage: data.sliderImage,
-        imageArr: data.image.split(','),
-        sliderImageArr: data.sliderImage.split(','),
-        storeName: data.storeName,
-        storeInfo: data.storeInfo,
+        slider_image: data.slider_image,
+        image_arr: data.image.split(','),
+        slider_image_arr: data.slider_image.split(','),
+        store_name: data.store_name,
+        store_info: data.store_info,
         keyword: data.keyword,
-        barCode: data.barCode,
-        storeCategory: data.storeCategory || {id:null},
+        bar_code: data.bar_code,
+        store_category: data.store_category || {id:null},
         price: data.price,
-        vipPrice: data.vipPrice,
-        otPrice: data.otPrice,
+        vip_price: data.vip_price,
+        ot_price: data.ot_price,
         postage: data.postage,
-        unitName: data.unitName,
+        unit_name: data.unit_name,
         sort: data.sort,
         sales: data.sales,
         stock: data.stock,
-        isShow: data.isShow,
-        isHot: data.isHot,
-        isBenefit: data.isBenefit,
-        isBest: data.isBest,
-        isNew: data.isNew,
+        is_show: data.is_show,
+        is_hot: data.is_hot,
+        is_benefit: data.is_benefit,
+        is_best: data.is_best,
+        is_new: data.is_new,
         description: data.description,
-        addTime: data.addTime,
-        isPostage: data.isPostage,
-        isDel: data.isDel,
-        merUse: data.merUse,
-        giveIntegral: data.giveIntegral,
+        add_time: data.add_time,
+        is_postage: data.is_postage,
+        is_del: data.is_del,
+        mer_use: data.mer_use,
+        give_integral: data.give_integral,
         cost: data.cost,
-        isSeckill: data.isSeckill,
-        isBargain: data.isBargain,
-        isGood: data.isGood,
+        is_seckill: data.is_seckill,
+        is_bargain: data.is_bargain,
+        is_good: data.is_good,
         ficti: data.ficti,
         browse: data.browse,
-        codePath: data.codePath,
-        soureLink: data.soureLink
+        code_path: data.code_path,
+        soure_link: data.soure_link
       }
       _this.dialog = true
     },
@@ -253,41 +253,41 @@ export default {
       const _this = this.$refs.form2
       _this.form = {
         id: data.id,
-        merId: data.merId,
+        mer_id: data.mer_id,
         image: data.image,
         sliderImage: data.sliderImage,
-        storeName: data.storeName,
-        storeInfo: data.storeInfo,
+        store_name: data.store_name,
+        store_info: data.store_info,
         keyword: data.keyword,
-        barCode: data.barCode,
-        storeCategory: data.storeCategory,
+        bar_code: data.bar_code,
+        store_category: data.store_category,
         price: data.price,
-        vipPrice: data.vipPrice,
-        otPrice: data.otPrice,
+        vip_price: data.vip_price,
+        ot_price: data.ot_price,
         postage: data.postage,
-        unitName: data.unitName,
+        unit_name: data.unit_name,
         sort: data.sort,
         sales: data.sales,
         stock: data.stock,
-        isShow: data.isShow,
-        isHot: data.isHot,
-        isBenefit: data.isBenefit,
-        isBest: data.isBest,
-        isNew: data.isNew,
+        is_show: data.is_show,
+        is_hot: data.is_hot,
+        is_benefit: data.is_benefit,
+        is_best: data.is_best,
+        is_new: data.is_new,
         description: data.description,
-        addTime: data.addTime,
-        isPostage: data.isPostage,
-        isDel: data.isDel,
-        merUse: data.merUse,
-        giveIntegral: data.giveIntegral,
+        add_time: data.add_time,
+        is_postage: data.is_postage,
+        is_del: data.is_del,
+        mer_use: data.mer_use,
+        give_integral: data.give_integral,
         cost: data.cost,
-        isSeckill: data.isSeckill,
-        isBargain: data.isBargain,
-        isGood: data.isGood,
+        is_seckill: data.is_seckill,
+        is_bargain: data.is_bargain,
+        is_good: data.is_good,
         ficti: data.ficti,
         browse: data.browse,
-        codePath: data.codePath,
-        soureLink: data.soureLink
+        code_path: data.code_path,
+        soure_link: data.soure_link
       }
       _this.dialog = true
       this.$refs.form2.getAttrs(data.id)

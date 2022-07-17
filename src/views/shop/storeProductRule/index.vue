@@ -48,7 +48,7 @@ import add from './form'
 
 // crud交由presenter持有
 const defaultCrud = CRUD({ title: 'sku规则', url: 'shop/rule', sort: 'id,desc', crudMethod: { ...crudYxStoreProductRule }})
-const defaultForm = { id: null, ruleName: null, ruleValue: null, createTime: null, updateTime: null, isDel: null }
+const defaultForm = { id: null, ruleName: null, ruleValue: null, createTime: null, updateTime: null, is_del: null }
 export default {
   name: 'YxStoreProductRule',
   components: { pagination, crudOperation, rrOperation, udOperation ,MaterialList,add},
@@ -63,13 +63,13 @@ export default {
         }
       }
   },
-  
+
   methods: {
     // 获取数据前设置好接口地址
     [CRUD.HOOK.afterRefresh]() {
       return true
-    }, 
-  
+    },
+
     [CRUD.HOOK.afterToCU](crud, form) {
     },
   }

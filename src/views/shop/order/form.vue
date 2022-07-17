@@ -2,8 +2,8 @@
   <el-dialog :append-to-body="true" :close-on-click-modal="false" :before-close="cancel" :visible.sync="dialog" :title="isAdd ? '新增' : '去发货'" width="500px">
     <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
       <el-form-item label="快递公司">
-        <!--<el-input v-model="form.deliveryName" style="width: 370px;"/>-->
-        <el-select v-model="form.deliveryName" filterable placeholder="请选择" style="width: 370px;">
+        <!--<el-input v-model="form.delivery_name" style="width: 370px;"/>-->
+        <el-select v-model="form.delivery_name" filterable placeholder="请选择" style="width: 370px;">
           <el-option
             v-for="item in express"
             :key="item.id"
@@ -13,7 +13,7 @@
         </el-select>
       </el-form-item>
       <el-form-item label="快递单号">
-        <el-input v-model="form.deliveryId" style="width: 370px;" />
+        <el-input v-model="form.delivery_id" style="width: 370px;" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -38,9 +38,9 @@ export default {
       loading: false, dialog: false, express: [],
       form: {
         id: '',
-        deliveryName: '',
-        deliveryType: 'express',
-        deliveryId: ''
+        delivery_name: '',
+        delivery_type: 'express',
+        delivery_id: ''
       },
       rules: {
         unique: [
@@ -115,56 +115,56 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: '',
-        orderId: '',
+        order_id: '',
         uid: '',
-        realName: '',
-        userPhone: '',
-        userAddress: '',
-        cartId: '',
-        freightPrice: '',
-        totalNum: '',
-        totalPrice: '',
-        totalPostage: '',
-        payPrice: '',
-        payPostage: '',
-        deductionPrice: '',
-        couponId: '',
-        couponPrice: '',
+        real_name: '',
+        user_phone: '',
+        user_address: '',
+        cart_id: '',
+        freight_price: '',
+        total_num: '',
+        total_price: '',
+        total_postage: '',
+        pay_price: '',
+        pay_postage: '',
+        deduction_price: '',
+        coupon_id: '',
+        coupon_price: '',
         paid: '',
-        payTime: '',
-        payType: '',
-        addTime: '',
+        pay_time: '',
+        pay_type: '',
+        add_time: '',
         status: '',
-        refundStatus: '',
-        refundReasonWapImg: '',
-        refundReasonWapExplain: '',
-        refundReasonTime: '',
-        refundReasonWap: '',
-        refundReason: '',
-        refundPrice: '',
-        deliveryName: '',
-        deliveryType: '',
-        deliveryId: '',
-        gainIntegral: '',
-        useIntegral: '',
-        backIntegral: '',
+        refund_status: '',
+        refund_reason_wap_img: '',
+        refund_reason_wap_explain: '',
+        refund_reason_time: '',
+        refund_reason_wap: '',
+        refund_reason: '',
+        refund_price: '',
+        delivery_name: '',
+        delivery_type: '',
+        delivery_id: '',
+        gain_integral: '',
+        use_integral: '',
+        back_integral: '',
         mark: '',
-        isDel: '',
+        is_del: '',
         unique: '',
         remark: '',
-        merId: '',
-        isMerCheck: '',
-        combinationId: '',
-        pinkId: '',
+        mer_Id: '',
+        is_mer_check: '',
+        combination_id: '',
+        pink_id: '',
         cost: '',
-        seckillId: '',
-        bargainId: '',
-        verifyCode: '',
-        storeId: '',
-        shippingType: '',
-        isChannel: '',
-        isRemind: '',
-        isSystemDel: ''
+        seckill_id: '',
+        bargain_id: '',
+        verify_code: '',
+        store_id: '',
+        shipping_type: '',
+        is_channel: '',
+        is_remind: '',
+        is_system_del: ''
       }
     },
     get() {

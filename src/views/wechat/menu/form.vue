@@ -5,7 +5,7 @@
         <el-input v-model="form.result" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="缓存时间">
-        <el-input v-model="form.addTime" style="width: 370px;" />
+        <el-input v-model="form.add_time" style="width: 370px;" />
       </el-form-item>
     </el-form>
     <div slot="footer" class="dialog-footer">
@@ -30,7 +30,7 @@ export default {
       form: {
         key: '',
         result: '',
-        addTime: ''
+        add_time: ''
       },
       rules: {
       }
@@ -82,7 +82,7 @@ export default {
       this.form = {
         key: '',
         result: '',
-        addTime: ''
+        add_time: ''
       }
     }
   }

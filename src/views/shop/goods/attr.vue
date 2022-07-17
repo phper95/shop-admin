@@ -17,15 +17,15 @@
             style="position: relative;margin-right: 6px"
           >
             <el-input v-model="item.value" style="width: 150px;" placeholder="设置名称" />
-            <el-button v-show="item.attrHidden == true" type="text" style="position: absolute;top:-6px;right:17px;margin-top:1px;border: none;font-size: 14px;font-weight:bold;line-height: 1.8" icon="el-icon-close" @click="handleRemove(index)" />
-            <el-button v-show="item.attrHidden == false" type="text" style="position: absolute;top:-6px;right:17px;margin-top:1px;border: none;font-size: 14px;font-weight:bold;line-height: 1.8" icon="el-icon-check" @click="attrHiddenBool(item)" />
+            <el-button v-show="item.attr_hidden == true" type="text" style="position: absolute;top:-6px;right:17px;margin-top:1px;border: none;font-size: 14px;font-weight:bold;line-height: 1.8" icon="el-icon-close" @click="handleRemove(index)" />
+            <el-button v-show="item.attr_hidden == false" type="text" style="position: absolute;top:-6px;right:17px;margin-top:1px;border: none;font-size: 14px;font-weight:bold;line-height: 1.8" icon="el-icon-check" @click="attr_hiddenBool(item)" />
           </el-col>
           <el-col :span="5"><el-button type="primary" @click="handleAdd">添加新规则</el-button></el-col>
         </el-row>
       </el-form-item>
       <el-form-item
         v-for="(item, index) in items"
-        v-show="item.attrHidden == true"
+        v-show="item.attr_hidden == true"
         :key="index"
         :label="''+item.value+':'"
       >
@@ -39,7 +39,7 @@
             <el-tag closable @close="attrRemove(item,k)">{{ attr }}</el-tag>
           </el-col>
           <el-col :span="5">
-            <el-input v-model="item.detailValue" style="width: 150px;" placeholder="设置属性" />
+            <el-input v-model="item.detail_value" style="width: 150px;" placeholder="设置属性" />
           </el-col>
           <el-col :span="5">
             <el-button type="primary" @click="attrAdd(item)">添加</el-button>
@@ -124,53 +124,53 @@ export default {
       loading: false, dialog: false, cates: [], title: '规则属性',
       form: {
         id: '',
-        merId: '',
+        mer_id: '',
         image: '',
-        sliderImage: '',
-        storeName: '',
-        storeInfo: '',
+        slider_image: '',
+        store_name: '',
+        store_info: '',
         keyword: '',
-        barCode: '',
-        cateId: 1,
+        bar_code: '',
+        cate_id: 1,
         price: '',
-        vipPrice: '',
-        otPrice: '',
+        vip_price: '',
+        ot_price: '',
         postage: '',
-        unitName: '',
+        unit_name: '',
         sort: '',
         sales: '',
         stock: '',
-        isShow: '',
-        isHot: '',
-        isBenefit: '',
-        isBest: '',
-        isNew: '',
+        is_show: '',
+        is_hot: '',
+        is_benefit: '',
+        is_best: '',
+        is_new: '',
         description: '',
-        addTime: '',
-        isPostage: '',
-        isDel: '',
-        merUse: '',
-        giveIntegral: '',
+        add_time: '',
+        is_postage: '',
+        is_del: '',
+        mer_use: '',
+        give_integral: '',
         cost: '',
-        isSeckill: '',
-        isBargain: '',
-        isGood: '',
+        is_seckill: '',
+        is_bargain: '',
+        is_good: '',
         ficti: '',
         browse: '',
-        codePath: '',
-        soureLink: ''
+        code_path: '',
+        soure_link: ''
       },
       rules: {
       },
       items: [{
         value: '',
-        detailValue: '',
-        attrHidden: false,
+        detail_value: '',
+        attr_hidden: false,
         detail: []
       }],
       attrs: [],
       hidden: false,
-      attrHidden: false,
+      attr_hidden: false,
       submiting: false
     }
   },
@@ -196,8 +196,8 @@ export default {
           this.hidden = false
           this.items = [{
             value: '',
-            detailValue: '',
-            attrHidden: false,
+            detail_value: '',
+            attr_hidden: false,
             detail: []
           }]
           this.attrs = []
@@ -248,51 +248,51 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: '',
-        merId: '',
+        mer_id: '',
         image: '',
-        sliderImage: '',
-        storeName: '',
-        storeInfo: '',
+        slider_image: '',
+        store_name: '',
+        store_info: '',
         keyword: '',
-        barCode: '',
-        cateId: '',
+        bar_code: '',
+        cate_id: '',
         price: '',
-        vipPrice: '',
-        otPrice: '',
+        vip_price: '',
+        ot_price: '',
         postage: '',
-        unitName: '',
+        unit_name: '',
         sort: '',
         sales: '',
         stock: '',
-        isShow: '',
-        isHot: '',
-        isBenefit: '',
-        isBest: '',
-        isNew: '',
+        is_show: '',
+        is_hot: '',
+        is_benefit: '',
+        is_best: '',
+        is_new: '',
         description: '',
-        addTime: '',
-        isPostage: '',
-        isDel: '',
-        merUse: '',
-        giveIntegral: '',
+        add_time: '',
+        is_postage: '',
+        is_del: '',
+        mer_use: '',
+        give_integral: '',
         cost: '',
-        isSeckill: '',
-        isBargain: '',
-        isGood: '',
+        is_seckill: '',
+        is_bargain: '',
+        is_good: '',
         ficti: '',
         browse: '',
-        codePath: '',
-        soureLink: ''
+        code_path: '',
+        soure_link: ''
       }
     },
     setAttrPic(index, pic) {
       this.$set(this.attrs[index], 'pic', pic)
     },
-    attrHiddenBool(item) {
+    attr_hiddenBool(item) {
       if (item.value == '') {
         Message({ message: '请填写规则名称', type: 'error' })
       } else {
-        item.attrHidden = true
+        item.attr_hidden = true
       }
     },
     hiddenBool() {
@@ -302,8 +302,8 @@ export default {
       if (!this.checkAttr()) return
       this.items.push({
         value: '',
-        detailValue: '',
-        attrHidden: false,
+        detail_value: '',
+        attr_hidden: false,
         detail: []
       })
     },
@@ -322,9 +322,9 @@ export default {
       return bool
     },
     attrAdd(item) {
-      if (!item.detailValue) return false
-      item.detail.push(item.detailValue)
-      item.detailValue = ''
+      if (!item.detail_value) return false
+      item.detail.push(item.detail_value)
+      item.detail_value = ''
     },
     handleRemove(index) {
       if (this.items.length > 1) { this.items.splice(index, 1) } else { Message({ message: '请设置至少一个规则', type: 'error' }) }

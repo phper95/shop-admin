@@ -5,7 +5,7 @@
         <el-input v-model="form.nickname" :disabled="true" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="真实姓名">
-        <el-input v-model="form.realName" style="width: 370px;" />
+        <el-input v-model="form.real_name" style="width: 370px;" />
       </el-form-item>
       <el-form-item label="用户备注">
         <el-input v-model="form.mark" style="width: 370px;" />
@@ -40,14 +40,14 @@ export default {
         id: '',
         account: '',
         pwd: '',
-        realName: '',
+        real_name: '',
         birthday: '',
         cardId: '',
         mark: '',
         nickname: '',
         avatar: '',
         phone: '',
-        addTime: '',
+        add_time: '',
         addIp: '',
         lastTime: '',
         lastIp: '',
@@ -115,14 +115,14 @@ export default {
         id: '',
         account: '',
         pwd: '',
-        realName: '',
+        real_name: '',
         birthday: '',
         cardId: '',
         mark: '',
         nickname: '',
         avatar: '',
         phone: '',
-        addTime: '',
+        add_time: '',
         addIp: '',
         lastTime: '',
         lastIp: '',

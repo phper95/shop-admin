@@ -5,9 +5,9 @@
         <span>收货信息</span>
       </div>
       <div class="text item">用户昵称:{{ form.nickname }}</div>
-      <div class="text item">收货人: {{ form.realName }}</div>
-      <div class="text item">联系电话: {{ form.userPhone }}</div>
-      <div class="text item">收货地址: {{ form.userAddress }}</div>
+      <div class="text item">收货人: {{ form.real_name }}</div>
+      <div class="text item">联系电话: {{ form.user_phone }}</div>
+      <div class="text item">收货地址: {{ form.user_address }}</div>
     </el-card>
     <el-card>
       <div slot="header">
@@ -15,31 +15,31 @@
       </div>
       <el-row :gutter="24">
         <el-col :span="12">
-          <div class="text item">订单编号: {{ form.orderId }}</div>
-          <div class="text item">商品总数: {{ form.totalNum }}</div>
-          <div class="text item">支付邮费: {{ form.totalPostage }}</div>
-          <div class="text item">实际支付: {{ form.payPrice }}</div>
-          <div class="text item">支付方式: {{ form.payTypeName }}</div>
+          <div class="text item">订单编号: {{ form.order_id }}</div>
+          <div class="text item">商品总数: {{ form.total_num }}</div>
+          <div class="text item">支付邮费: {{ form.total_postage }}</div>
+          <div class="text item">实际支付: {{ form.pay_price }}</div>
+          <div class="text item">支付方式: {{ form.pay_type_name }}</div>
         </el-col>
         <el-col :span="12">
           <div class="text item">订单状态: <span v-html="form.statusName"></span></div>
-          <div class="text item">商品总价: {{ form.totalPrice }}</div>
-          <div class="text item">优惠券金额: {{ form.couponPrice }}</div>
+          <div class="text item">商品总价: {{ form.total_price }}</div>
+          <div class="text item">优惠券金额: {{ form.coupon_price }}</div>
           <div class="text item">创建时间: {{ parseTime(form.createTime) }}</div>
-          <div class="text item">支付时间: {{ parseTime(form.payTime) }}</div>
+          <div class="text item">支付时间: {{ parseTime(form.pay_time) }}</div>
         </el-col>
       </el-row>
     </el-card>
-    <el-card v-if="form.storeId == 0">
+    <el-card v-if="form.store_id == 0">
       <div slot="header">
         <span>物流信息</span>
       </div>
-      <div class="text item">快递公司:{{ form.deliveryName }}</div>
-      <div class="text item">快递单号:{{ form.deliveryId }}</div>
+      <div class="text item">快递公司:{{ form.delivery_name }}</div>
+      <div class="text item">快递单号:{{ form.delivery_id }}</div>
 
       <div><el-button :loading="loading" type="primary" @click="express">查看物流</el-button></div>
       <div style="margin-top: 20px">
-      <el-timeline v-if="form.deliveryId && expressInfo.length > 0">
+      <el-timeline v-if="form.delivery_id && expressInfo.length > 0">
         <el-timeline-item
           v-for="(obj, index) in expressInfo"
           :key="index"
@@ -81,57 +81,57 @@ export default {
       loading: false, dialog: false, expressInfo: [],
       form: {
         id: '',
-        orderId: '',
+        order_id: '',
         uid: '',
-        realName: '',
-        userPhone: '',
-        userAddress: '',
-        cartId: '',
-        freightPrice: '',
-        totalNum: '',
-        totalPrice: '',
-        totalPostage: '',
-        payPrice: '',
-        payPostage: '',
-        deductionPrice: '',
-        couponId: '',
-        couponPrice: '',
+        real_name: '',
+        user_phone: '',
+        user_address: '',
+        cart_id: '',
+        freight_price: '',
+        total_num: '',
+        total_price: '',
+        total_postage: '',
+        pay_price: '',
+        pay_postage: '',
+        deduction_price: '',
+        coupon_id: '',
+        coupon_price: '',
         paid: '',
-        payTime: '',
-        payType: '',
-        addTime: '',
+        pay_time: '',
+        pay_type: '',
+        add_time: '',
         status: '',
-        refundStatus: '',
-        refundReasonWapImg: '',
-        refundReasonWapExplain: '',
-        refundReasonTime: '',
-        refundReasonWap: '',
-        refundReason: '',
-        refundPrice: '',
-        deliveryName: '',
+        refund_status: '',
+        refund_reason_wap_img: '',
+        refund_reason_wap_explain: '',
+        refund_reason_time: '',
+        refund_reason_wap: '',
+        refund_reason: '',
+        refund_price: '',
+        delivery_name: '',
         deliverySn: '',
-        deliveryType: '',
-        deliveryId: '',
-        gainIntegral: '',
-        useIntegral: '',
-        backIntegral: '',
+        delivery_type: '',
+        delivery_id: '',
+        gain_integral: '',
+        use_integral: '',
+        back_integral: '',
         mark: '',
-        isDel: '',
+        is_del: '',
         unique: '',
         remark: '',
-        merId: '',
-        isMerCheck: '',
-        combinationId: '',
-        pinkId: '',
+        mer_Id: '',
+        is_mer_check: '',
+        combination_id: '',
+        pink_id: '',
         cost: '',
-        seckillId: '',
-        bargainId: '',
-        verifyCode: '',
-        storeId: '',
-        shippingType: '',
-        isChannel: '',
-        isRemind: '',
-        isSystemDel: ''
+        seckill_id: '',
+        bargain_id: '',
+        verify_code: '',
+        store_id: '',
+        shipping_type: '',
+        is_channel: '',
+        is_remind: '',
+        is_system_del: ''
       },
       rules: {
         unique: [
@@ -154,7 +154,7 @@ export default {
       let params ={
         "orderCode": this.form.id,
         "shipperCode": this.form.deliverySn,
-        "logisticCode": this.form.deliveryId
+        "logisticCode": this.form.delivery_id
       }
 
       express(params).then(res=>{
@@ -231,56 +231,56 @@ export default {
       this.$refs['form'].resetFields()
       this.form = {
         id: '',
-        orderId: '',
+        order_id: '',
         uid: '',
-        realName: '',
-        userPhone: '',
-        userAddress: '',
-        cartId: '',
-        freightPrice: '',
-        totalNum: '',
-        totalPrice: '',
-        totalPostage: '',
-        payPrice: '',
-        payPostage: '',
-        deductionPrice: '',
-        couponId: '',
-        couponPrice: '',
+        real_name: '',
+        user_phone: '',
+        user_address: '',
+        cart_id: '',
+        freight_price: '',
+        total_num: '',
+        total_price: '',
+        total_postage: '',
+        pay_price: '',
+        pay_postage: '',
+        deduction_price: '',
+        coupon_id: '',
+        coupon_price: '',
         paid: '',
-        payTime: '',
-        payType: '',
-        addTime: '',
+        pay_time: '',
+        pay_type: '',
+        add_time: '',
         status: '',
-        refundStatus: '',
-        refundReasonWapImg: '',
-        refundReasonWapExplain: '',
-        refundReasonTime: '',
-        refundReasonWap: '',
-        refundReason: '',
-        refundPrice: '',
-        deliveryName: '',
-        deliveryType: '',
-        deliveryId: '',
-        gainIntegral: '',
-        useIntegral: '',
-        backIntegral: '',
+        refund_status: '',
+        refund_reason_wap_img: '',
+        refund_reason_wap_explain: '',
+        refund_reason_time: '',
+        refund_reason_wap: '',
+        refund_reason: '',
+        refund_price: '',
+        delivery_name: '',
+        delivery_type: '',
+        delivery_id: '',
+        gain_integral: '',
+        use_integral: '',
+        back_integral: '',
         mark: '',
-        isDel: '',
+        is_del: '',
         unique: '',
         remark: '',
-        merId: '',
-        isMerCheck: '',
-        combinationId: '',
-        pinkId: '',
+        mer_Id: '',
+        is_mer_check: '',
+        combination_id: '',
+        pink_id: '',
         cost: '',
-        seckillId: '',
-        bargainId: '',
-        verifyCode: '',
-        storeId: '',
-        shippingType: '',
-        isChannel: '',
-        isRemind: '',
-        isSystemDel: ''
+        seckill_id: '',
+        bargain_id: '',
+        verify_code: '',
+        store_id: '',
+        shipping_type: '',
+        is_channel: '',
+        is_remind: '',
+        is_system_del: ''
       }
     },
     getNowOrderStatus() {

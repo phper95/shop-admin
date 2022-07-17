@@ -1,24 +1,24 @@
 <template>
   <div class="app-container">
     <div>
-      <el-steps v-if="order.refundStatus===0" :active="orderStatus.size" align-center process-status="process" finish-status="success">
-        <el-step title="用户下单" :description="orderStatus.cacheKeyCreateOrder"></el-step>
-        <el-step title="待发货" :description="orderStatus.paySuccess"></el-step>
-        <el-step title="待收货" :description="orderStatus.deliveryGoods"></el-step>
-        <el-step title="待评价" :description="orderStatus.userTakeDelivery"></el-step>
-        <el-step title="已完成" :description="orderStatus.checkOrderOver"></el-step>
+      <el-steps v-if="order.refund_status===0" :active="order_status.size" align-center process-status="process" finish-status="success">
+        <el-step title="用户下单" :description="order_status.cache_key_create_order"></el-step>
+        <el-step title="待发货" :description="order_status.pay_success"></el-step>
+        <el-step title="待收货" :description="order_status.delivery_goods"></el-step>
+        <el-step title="待评价" :description="order_status.user_take_delivery"></el-step>
+        <el-step title="已完成" :description="order_status.check_order_over"></el-step>
       </el-steps>
-      <el-steps v-else :active="order.refundStatus+1" align-center process-status="process" finish-status="success">
-        <el-step title="用户下单" :description="orderStatus.cacheKeyCreateOrder"></el-step>
-        <el-step title="用户申请退款" :description="orderStatus.applyRefund"></el-step>
-        <el-step title="退款申请通过" :description="orderStatus.refundOrderSuccess"></el-step>
+      <el-steps v-else :active="order.refund_status+1" align-center process-status="process" finish-status="success">
+        <el-step title="用户下单" :description="orderStatus.cache_key_create_order"></el-step>
+        <el-step title="用户申请退款" :description="orderStatus.apply_refund"></el-step>
+        <el-step title="退款申请通过" :description="orderStatus.refund_order_success"></el-step>
       </el-steps>
 
     </div>
     <el-card shadow="never" style="margin-top: 15px">
       <div class="operate-container">
         <i class="el-icon-warning color-danger" style="margin-left: 20px"></i>
-        <span class="color-danger">当前订单状态：<span v-html="order.statusName"></span></span>
+        <span class="color-danger">当前订单状态：<span v-html="order.status_name"></span></span>
         <div class="operate-button-container" v-show="order._status===1">
           <el-button size="mini" @click="editOrder(order)">修改订单</el-button>
           <el-button size="mini" @click="remark(order)">备注订单</el-button>
@@ -54,11 +54,11 @@
           <el-col :span="4" class="table-cell-title">订单类型</el-col>
         </el-row>
         <el-row>
-          <el-col :span="4" class="table-cell">{{order.orderId}}</el-col>
+          <el-col :span="4" class="table-cell">{{order.order_id}}</el-col>
           <el-col :span="4" class="table-cell">暂无</el-col>
-          <el-col :span="4" class="table-cell">{{userDTO.nickname}}</el-col>
-          <el-col :span="4" class="table-cell">{{order.payTypeName }}</el-col>
-          <el-col :span="4" class="table-cell">{{order.isChannel | formatSourceType}}</el-col>
+          <el-col :span="4" class="table-cell">{{user_dto.nickname}}</el-col>
+          <el-col :span="4" class="table-cell">{{order.pay_type_name }}</el-col>
+          <el-col :span="4" class="table-cell">{{order.is_channel | formatSourceType}}</el-col>
           <el-col :span="4" class="table-cell">{{order.pinkName }}</el-col>
         </el-row>
         <el-row>
@@ -70,11 +70,11 @@
           <el-col :span="4" class="table-cell-title">活动信息</el-col>
         </el-row>
         <el-row>
-          <el-col :span="4" class="table-cell">{{order.shippingType | formatShippingType}}</el-col>
+          <el-col :span="4" class="table-cell">{{order.shipping_type | formatshipping_type}}</el-col>
           <el-col :span="4" class="table-cell">{{order.deliverySn | formatNull}}</el-col>
           <el-col :span="4" class="table-cell">7天</el-col>
-          <el-col :span="4" class="table-cell">{{order.gainIntegral}}</el-col>
-          <el-col :span="4" class="table-cell">{{order.payIntegral}}</el-col>
+          <el-col :span="4" class="table-cell">{{order.gain_integral}}</el-col>
+          <el-col :span="4" class="table-cell">{{order.pay_integral}}</el-col>
           <el-col :span="4" class="table-cell">
             <el-popover
               placement="top-start"
@@ -101,17 +101,17 @@
           <el-col :span="4" class="table-cell-title">管理员备注</el-col>
         </el-row>
         <el-row>
-          <el-col :span="4" class="table-cell">{{ userDTO.nickname}}</el-col>
-          <el-col :span="4" class="table-cell">{{order.realName}}</el-col>
-          <el-col :span="4" class="table-cell">{{order.userPhone}}</el-col>
+          <el-col :span="4" class="table-cell">{{ user_dto.nickname}}</el-col>
+          <el-col :span="4" class="table-cell">{{order.real_name}}</el-col>
+          <el-col :span="4" class="table-cell">{{order.user_phone}}</el-col>
           <el-col :span="4" class="table-cell">
             <el-popover
               placement="top-start"
               title="收货地址"
               width="300"
               trigger="hover"
-              :content="order.userAddress">
-              <span slot="reference">{{order.userAddress | formatLongText}}</span>
+              :content="order.user_address">
+              <span slot="reference">{{order.user_address | formatLongText}}</span>
             </el-popover>
           </el-col>
           <el-col :span="4" class="table-cell">
@@ -157,7 +157,7 @@
         <el-table-column label="价格/货号" width="240" align="center">
           <template slot-scope="scope">
             <p>价格：￥{{scope.row.cartInfoMap.productInfo.attrInfo.price}}</p>
-            <p>货号：{{scope.row.cartInfoMap.productInfo.attrInfo.barCode}}</p>
+            <p>货号：{{scope.row.cartInfoMap.productInfo.attrInfo.bar_code}}</p>
           </template>
         </el-table-column>
         <el-table-column label="属性" width="240" align="center">
@@ -177,7 +177,7 @@
         </el-table-column>
       </el-table>
       <div style="float: right;margin: 20px">
-        合计：<span class="color-danger">￥{{order.payPrice}}</span>
+        合计：<span class="color-danger">￥{{order.pay_price}}</span>
       </div>
       <div style="margin-top: 60px">
         <svg-icon icon-class="marker" style="color: #606266"></svg-icon>
@@ -191,10 +191,10 @@
           <el-col :span="6" class="table-cell-title">积分抵扣</el-col>
         </el-row>
         <el-row>
-          <el-col :span="6" class="table-cell">￥{{order.totalPrice}}</el-col>
-          <el-col :span="6" class="table-cell">￥{{order.payPostage}}</el-col>
-          <el-col :span="6" class="table-cell">-￥{{order.couponPrice}}</el-col>
-          <el-col :span="6" class="table-cell">-￥{{order.deductionPrice}}</el-col>
+          <el-col :span="6" class="table-cell">￥{{order.total_price}}</el-col>
+          <el-col :span="6" class="table-cell">￥{{order.pay_postage}}</el-col>
+          <el-col :span="6" class="table-cell">-￥{{order.coupon_price}}</el-col>
+          <el-col :span="6" class="table-cell">-￥{{order.deduction_price}}</el-col>
         </el-row>
         <el-row>
           <el-col :span="6" class="table-cell-title">活动优惠</el-col>
@@ -206,10 +206,10 @@
           <el-col :span="6" class="table-cell">-￥0</el-col>
           <el-col :span="6" class="table-cell">-￥0</el-col>
           <el-col :span="6" class="table-cell">
-            <span class="color-danger">￥{{order.totalPrice}}</span>
+            <span class="color-danger">￥{{order.total_price}}</span>
           </el-col>
           <el-col :span="6" class="table-cell">
-            <span class="color-danger">￥{{order.payPrice}}</span>
+            <span class="color-danger">￥{{order.pay_price}}</span>
           </el-col>
         </el-row>
       </div>
@@ -309,12 +309,12 @@
           <el-col :span="6" class="table-cell-title">积分抵扣</el-col>
         </el-row>
         <el-row>
-          <el-col :span="6" class="table-cell">￥{{order.totalPrice}}</el-col>
+          <el-col :span="6" class="table-cell">￥{{order.total_price}}</el-col>
           <el-col :span="6" class="table-cell">
-            <el-input type="number" v-model="order.payPostage" size="mini"><template slot="prepend">￥</template></el-input>
+            <el-input type="number" v-model="order.pay_postage" size="mini"><template slot="prepend">￥</template></el-input>
           </el-col>
-          <el-col :span="6" class="table-cell">-￥{{order.couponPrice}}</el-col>
-          <el-col :span="6" class="table-cell">-￥{{order.useIntegral}}</el-col>
+          <el-col :span="6" class="table-cell">-￥{{order.coupon_price}}</el-col>
+          <el-col :span="6" class="table-cell">-￥{{order.use_integral}}</el-col>
         </el-row>
         <el-row>
           <el-col :span="6" class="table-cell-title">活动优惠</el-col>
@@ -325,13 +325,13 @@
         <el-row>
           <el-col :span="6" class="table-cell">-￥{{order.promotionAmount}}</el-col>
           <el-col :span="6" class="table-cell">
-            <el-input type="number" v-model="order.deductionPrice" size="mini"><template slot="prepend">-￥</template></el-input>
+            <el-input type="number" v-model="order.deduction_price" size="mini"><template slot="prepend">-￥</template></el-input>
           </el-col>
           <el-col :span="6" class="table-cell">
-            <span class="color-danger">￥{{order.totalPrice}}</span>
+            <span class="color-danger">￥{{order.total_price}}</span>
           </el-col>
           <el-col :span="6" class="table-cell">
-            <span class="color-danger">￥{{order.payPrice}}</span>
+            <span class="color-danger">￥{{order.pay_price}}</span>
           </el-col>
         </el-row>
       </div>
@@ -387,7 +387,7 @@ import eRefund from './refund'
 import editOrder from './edit'
 import eRemark from './remark'
   const defaultReceiverInfo = {
-    orderId:null,
+    order_id:null,
     receiverName:null,
     receiverPhone:null,
     receiverPostCode:null,
@@ -414,7 +414,7 @@ import eRemark from './remark'
         receiverDialogVisible:false,
         receiverInfo:Object.assign({},defaultReceiverInfo),
         moneyDialogVisible:false,
-        moneyInfo:{orderId:null, freightAmount:0, discountAmount:0,status:null},
+        moneyInfo:{order_id:null, freightAmount:0, discountAmount:0,status:null},
         messageDialogVisible:false,
         message: {title:null, content:null},
         closeDialogVisible:false,
@@ -422,7 +422,7 @@ import eRemark from './remark'
         closeInfo:{note:null,id:null},
         markOrderDialogVisible:false,
         markInfo:{note:null},
-        userDTO: {},
+        user_dto: {},
         logisticsDialogVisible: {
           visible: false,
           list: []
@@ -453,7 +453,7 @@ import eRemark from './remark'
           return '公众号/H5';
         }
       },
-      formatShippingType(value){
+      formatshipping_type(value){
         if (value === 1) {
           return '快递';
         } else {
@@ -525,57 +525,57 @@ import eRemark from './remark'
         const _this = this.$refs.form2
         _this.form = {
           id: data.id,
-          orderId: data.orderId,
+          order_id: data.order_id,
           uid: data.uid,
-          realName: data.realName,
-          userPhone: data.userPhone,
-          userAddress: data.userAddress,
-          cartId: data.cartId,
-          freightPrice: data.freightPrice,
-          totalNum: data.totalNum,
-          totalPrice: data.totalPrice,
-          totalPostage: data.totalPostage,
-          payPrice: data.payPrice,
-          payPostage: data.payPostage,
-          deductionPrice: data.deductionPrice,
-          couponId: data.couponId,
-          couponPrice: data.couponPrice,
+          real_name: data.real_name,
+          user_phone: data.user_phone,
+          user_address: data.user_address,
+          cart_id: data.cart_id,
+          freight_price: data.freight_price,
+          total_num: data.total_num,
+          total_price: data.total_price,
+          total_postage: data.total_postage,
+          pay_price: data.pay_price,
+          pay_postage: data.pay_postage,
+          deduction_price: data.deduction_price,
+          coupon_id: data.coupon_id,
+          coupon_price: data.coupon_price,
           paid: data.paid,
-          payTime: data.payTime,
-          payType: data.payType,
-          addTime: data.addTime,
+          pay_time: data.pay_time,
+          pay_type: data.pay_type,
+          add_time: data.add_time,
           status: data.status,
-          refundStatus: data.refundStatus,
-          refundReasonWapImg: data.refundReasonWapImg,
-          refundReasonWapExplain: data.refundReasonWapExplain,
-          refundReasonTime: data.refundReasonTime,
-          refundReasonWap: data.refundReasonWap,
-          refundReason: data.refundReason,
-          refundPrice: data.refundPrice,
-          deliveryName: data.deliveryName,
-          deliveryType: data.deliveryType,
-          deliveryId: data.deliveryId,
-          gainIntegral: data.gainIntegral,
-          useIntegral: data.useIntegral,
-          backIntegral: data.backIntegral,
+          refund_status: data.refund_status,
+          refund_reason_wap_img: data.refund_reason_wap_img,
+          refund_reason_wap_explain: data.refund_reason_wap_explain,
+          refund_reason_time: data.refund_reason_time,
+          refund_reason_wap: data.refund_reason_wap,
+          refund_reason: data.refund_reason,
+          refund_price: data.refund_price,
+          delivery_name: data.delivery_name,
+          delivery_type: data.delivery_type,
+          delivery_id: data.delivery_id,
+          gain_integral: data.gain_integral,
+          use_integral: data.use_integral,
+          back_integral: data.back_integral,
           mark: data.mark,
-          isDel: data.isDel,
+          is_del: data.is_del,
           unique: data.unique,
           remark: data.remark,
-          merId: data.merId,
-          isMerCheck: data.isMerCheck,
-          combinationId: data.combinationId,
-          pinkId: data.pinkId,
+          mer_Id: data.mer_Id,
+          is_mer_check: data.is_mer_check,
+          combination_id: data.combination_id,
+          pink_id: data.pink_id,
           cost: data.cost,
-          seckillId: data.seckillId,
-          bargainId: data.bargainId,
-          verifyCode: data.verifyCode,
-          storeId: data.storeId,
-          shippingType: data.shippingType,
-          isChannel: data.isChannel,
-          isRemind: data.isRemind,
-          payIntegral: data.payIntegral,
-          isSystemDel: data.isSystemDel
+          seckill_id: data.seckill_id,
+          bargain_id: data.bargain_id,
+          verify_code: data.verify_code,
+          store_id: data.store_id,
+          shipping_type: data.shipping_type,
+          is_channel: data.is_channel,
+          is_remind: data.is_remind,
+          pay_integral: data.pay_integral,
+          is_system_del: data.is_system_del
         }
         _this.dialog = true
       },
@@ -584,58 +584,58 @@ import eRemark from './remark'
         const _this = this.$refs.form
         _this.form = {
           id: data.id,
-          orderId: data.orderId,
+          order_id: data.order_id,
           uid: data.uid,
-          realName: data.realName,
-          userPhone: data.userPhone,
-          userAddress: data.userAddress,
-          cartId: data.cartId,
-          freightPrice: data.freightPrice,
-          totalNum: data.totalNum,
-          totalPrice: data.totalPrice,
-          totalPostage: data.totalPostage,
-          payPrice: data.payPrice,
-          payPostage: data.payPostage,
-          deductionPrice: data.deductionPrice,
-          couponId: data.couponId,
-          couponPrice: data.couponPrice,
+          real_name: data.real_name,
+          user_phone: data.user_phone,
+          user_address: data.user_address,
+          cart_id: data.cart_id,
+          freight_price: data.freight_price,
+          total_num: data.total_num,
+          total_price: data.total_price,
+          total_postage: data.total_postage,
+          pay_price: data.pay_price,
+          pay_postage: data.pay_postage,
+          deduction_price: data.deduction_price,
+          coupon_id: data.coupon_id,
+          coupon_price: data.coupon_price,
           paid: data.paid,
-          payTime: data.payTime,
-          payType: data.payType,
-          addTime: data.addTime,
+          pay_time: data.pay_time,
+          pay_type: data.pay_type,
+          add_time: data.add_time,
           status: data.status,
-          refundStatus: data.refundStatus,
-          refundReasonWapImg: data.refundReasonWapImg,
-          refundReasonWapExplain: data.refundReasonWapExplain,
-          refundReasonTime: data.refundReasonTime,
-          refundReasonWap: data.refundReasonWap,
-          refundReason: data.refundReason,
-          refundPrice: data.refundPrice,
-          deliveryName: data.deliveryName,
+          refund_status: data.refund_status,
+          refund_reason_wap_img: data.refund_reason_wap_img,
+          refund_reason_wap_explain: data.refund_reason_wap_explain,
+          refund_reason_time: data.refund_reason_time,
+          refund_reason_wap: data.refund_reason_wap,
+          refund_reason: data.refund_reason,
+          refund_price: data.refund_price,
+          delivery_name: data.delivery_name,
           deliverySn: data.deliverySn,
-          deliveryType: data.deliveryType,
-          deliveryId: data.deliveryId,
-          gainIntegral: data.gainIntegral,
-          useIntegral: data.useIntegral,
-          backIntegral: data.backIntegral,
+          delivery_type: data.delivery_type,
+          delivery_id: data.delivery_id,
+          gain_integral: data.gain_integral,
+          use_integral: data.use_integral,
+          back_integral: data.back_integral,
           mark: data.mark,
-          isDel: data.isDel,
+          is_del: data.is_del,
           unique: data.unique,
           remark: data.remark,
-          merId: data.merId,
-          isMerCheck: data.isMerCheck,
-          combinationId: data.combinationId,
-          pinkId: data.pinkId,
+          mer_Id: data.mer_Id,
+          is_mer_check: data.is_mer_check,
+          combination_id: data.combination_id,
+          pink_id: data.pink_id,
           cost: data.cost,
-          seckillId: data.seckillId,
-          bargainId: data.bargainId,
-          verifyCode: data.verifyCode,
-          storeId: data.storeId,
-          shippingType: data.shippingType,
-          isChannel: data.isChannel,
-          isRemind: data.isRemind,
-          payIntegral: data.payIntegral,
-          isSystemDel: data.isSystemDel
+          seckill_id: data.seckill_id,
+          bargain_id: data.bargain_id,
+          verify_code: data.verify_code,
+          store_id: data.store_id,
+          shipping_type: data.shipping_type,
+          is_channel: data.is_channel,
+          is_remind: data.is_remind,
+          pay_integral: data.pay_integral,
+          is_system_del: data.is_system_del
         }
         _this.dialog = true
       },
@@ -644,57 +644,57 @@ import eRemark from './remark'
         const _this = this.$refs.form3
         _this.form = {
           id: data.id,
-          orderId: data.orderId,
+          order_id: data.order_id,
           uid: data.uid,
-          realName: data.realName,
-          userPhone: data.userPhone,
-          userAddress: data.userAddress,
-          cartId: data.cartId,
-          freightPrice: data.freightPrice,
-          totalNum: data.totalNum,
-          totalPrice: data.totalPrice,
-          totalPostage: data.totalPostage,
-          payPrice: data.payPrice,
-          payPostage: data.payPostage,
-          deductionPrice: data.deductionPrice,
-          couponId: data.couponId,
-          couponPrice: data.couponPrice,
+          real_name: data.real_name,
+          user_phone: data.user_phone,
+          user_address: data.user_address,
+          cart_id: data.cart_id,
+          freight_price: data.freight_price,
+          total_num: data.total_num,
+          total_price: data.total_price,
+          total_postage: data.total_postage,
+          pay_price: data.pay_price,
+          pay_postage: data.pay_postage,
+          deduction_price: data.deduction_price,
+          coupon_id: data.coupon_id,
+          coupon_price: data.coupon_price,
           paid: data.paid,
-          payTime: data.payTime,
-          payType: data.payType,
-          addTime: data.addTime,
+          pay_time: data.pay_time,
+          pay_type: data.pay_type,
+          add_time: data.add_time,
           status: data.status,
-          refundStatus: data.refundStatus,
-          refundReasonWapImg: data.refundReasonWapImg,
-          refundReasonWapExplain: data.refundReasonWapExplain,
-          refundReasonTime: data.refundReasonTime,
-          refundReasonWap: data.refundReasonWap,
-          refundReason: data.refundReason,
-          refundPrice: data.refundPrice,
-          deliveryName: data.deliveryName,
-          deliveryType: data.deliveryType,
-          deliveryId: data.deliveryId,
-          gainIntegral: data.gainIntegral,
-          useIntegral: data.useIntegral,
-          backIntegral: data.backIntegral,
+          refund_status: data.refund_status,
+          refund_reason_wap_img: data.refund_reason_wap_img,
+          refund_reason_wap_explain: data.refund_reason_wap_explain,
+          refund_reason_time: data.refund_reason_time,
+          refund_reason_wap: data.refund_reason_wap,
+          refund_reason: data.refund_reason,
+          refund_price: data.refund_price,
+          delivery_name: data.delivery_name,
+          delivery_type: data.delivery_type,
+          delivery_id: data.delivery_id,
+          gain_integral: data.gain_integral,
+          use_integral: data.use_integral,
+          back_integral: data.back_integral,
           mark: data.mark,
-          isDel: data.isDel,
+          is_del: data.is_del,
           unique: data.unique,
           remark: data.remark,
-          merId: data.merId,
-          isMerCheck: data.isMerCheck,
-          combinationId: data.combinationId,
-          pinkId: data.pinkId,
+          mer_Id: data.mer_Id,
+          is_mer_check: data.is_mer_check,
+          combination_id: data.combination_id,
+          pink_id: data.pink_id,
           cost: data.cost,
-          seckillId: data.seckillId,
-          bargainId: data.bargainId,
-          verifyCode: data.verifyCode,
-          storeId: data.storeId,
-          shippingType: data.shippingType,
-          isChannel: data.isChannel,
-          isRemind: data.isRemind,
-          payIntegral: data.payIntegral,
-          isSystemDel: data.isSystemDel
+          seckill_id: data.seckill_id,
+          bargain_id: data.bargain_id,
+          verify_code: data.verify_code,
+          store_id: data.store_id,
+          shipping_type: data.shipping_type,
+          is_channel: data.is_channel,
+          is_remind: data.is_remind,
+          pay_integral: data.pay_integral,
+          is_system_del: data.is_system_del
         }
         _this.dialog = true
       },
@@ -703,57 +703,57 @@ import eRemark from './remark'
         const _this = this.$refs.form4
         _this.form = {
           id: data.id,
-          orderId: data.orderId,
+          order_id: data.order_id,
           uid: data.uid,
-          realName: data.realName,
-          userPhone: data.userPhone,
-          userAddress: data.userAddress,
-          cartId: data.cartId,
-          freightPrice: data.freightPrice,
-          totalNum: data.totalNum,
-          totalPrice: data.totalPrice,
-          totalPostage: data.totalPostage,
-          payPrice: data.payPrice,
-          payPostage: data.payPostage,
-          deductionPrice: data.deductionPrice,
-          couponId: data.couponId,
-          couponPrice: data.couponPrice,
+          real_name: data.real_name,
+          user_phone: data.user_phone,
+          user_address: data.user_address,
+          cart_id: data.cart_id,
+          freight_price: data.freight_price,
+          total_num: data.total_num,
+          total_price: data.total_price,
+          total_postage: data.total_postage,
+          pay_price: data.pay_price,
+          pay_postage: data.pay_postage,
+          deduction_price: data.deduction_price,
+          coupon_id: data.coupon_id,
+          coupon_price: data.coupon_price,
           paid: data.paid,
-          payTime: data.payTime,
-          payType: data.payType,
-          addTime: data.addTime,
+          pay_time: data.pay_time,
+          pay_type: data.pay_type,
+          add_time: data.add_time,
           status: data.status,
-          refundStatus: data.refundStatus,
-          refundReasonWapImg: data.refundReasonWapImg,
-          refundReasonWapExplain: data.refundReasonWapExplain,
-          refundReasonTime: data.refundReasonTime,
-          refundReasonWap: data.refundReasonWap,
-          refundReason: data.refundReason,
-          refundPrice: data.refundPrice,
-          deliveryName: data.deliveryName,
-          deliveryType: data.deliveryType,
-          deliveryId: data.deliveryId,
-          gainIntegral: data.gainIntegral,
-          useIntegral: data.useIntegral,
-          backIntegral: data.backIntegral,
+          refund_status: data.refund_status,
+          refund_reason_wap_img: data.refund_reason_wap_img,
+          refund_reason_wap_explain: data.refund_reason_wap_explain,
+          refund_reason_time: data.refund_reason_time,
+          refund_reason_wap: data.refund_reason_wap,
+          refund_reason: data.refund_reason,
+          refund_price: data.refund_price,
+          delivery_name: data.delivery_name,
+          delivery_type: data.delivery_type,
+          delivery_id: data.delivery_id,
+          gain_integral: data.gain_integral,
+          use_integral: data.use_integral,
+          back_integral: data.back_integral,
           mark: data.mark,
-          isDel: data.isDel,
+          is_del: data.is_del,
           unique: data.unique,
           remark: data.remark,
-          merId: data.merId,
-          isMerCheck: data.isMerCheck,
-          combinationId: data.combinationId,
-          pinkId: data.pinkId,
+          mer_Id: data.mer_Id,
+          is_mer_check: data.is_mer_check,
+          combination_id: data.combination_id,
+          pink_id: data.pink_id,
           cost: data.cost,
-          seckillId: data.seckillId,
-          bargainId: data.bargainId,
-          verifyCode: data.verifyCode,
-          storeId: data.storeId,
-          shippingType: data.shippingType,
-          isChannel: data.isChannel,
-          isRemind: data.isRemind,
-          payIntegral: data.payIntegral,
-          isSystemDel: data.isSystemDel
+          seckill_id: data.seckill_id,
+          bargain_id: data.bargain_id,
+          verify_code: data.verify_code,
+          store_id: data.store_id,
+          shipping_type: data.shipping_type,
+          is_channel: data.is_channel,
+          is_remind: data.is_remind,
+          pay_integral: data.pay_integral,
+          is_system_del: data.is_system_del
         }
         _this.dialog = true
       },
@@ -762,7 +762,7 @@ import eRemark from './remark'
         let params ={
           "orderCode": this.order.id,
           "shipperCode": this.order.deliverySn,
-          "logisticCode": this.order.deliveryId
+          "logisticCode": this.order.delivery_id
         }
 
         express(params).then(res=>{
@@ -779,7 +779,7 @@ import eRemark from './remark'
         this.getNowOrderStatus();
         getOrderDetail(id).then(response => {
           this.order = response;
-          this.userDTO = this.order.userDTO;
+          this.user_dto = this.order.user_dto;
         });
       },
       onSelectRegion(data){
@@ -819,7 +819,7 @@ import eRemark from './remark'
       showUpdateReceiverDialog(){
         this.receiverDialogVisible=true;
         this.receiverInfo={
-          orderId:this.order.id,
+          order_id:this.order.id,
           receiverName:this.order.receiverName,
           receiverPhone:this.order.receiverPhone,
           receiverPostCode:this.order.receiverPostCode,
@@ -850,7 +850,7 @@ import eRemark from './remark'
       },
       showUpdateMoneyDialog(){
         this.moneyDialogVisible=true;
-        this.moneyInfo.orderId=this.order.id;
+        this.moneyInfo.order_id=this.order.id;
         this.moneyInfo.freightAmount=this.order.freightAmount;
         this.moneyInfo.discountAmount=this.order.discountAmount;
         this.moneyInfo.status=this.order._status;

@@ -127,7 +127,7 @@ export default {
         name: data.name,
         content: data.content,
         tempid: data.tempid,
-        addTime: data.addTime,
+        add_time: data.add_time,
         status: data.status,
         type: data.type
       }
