@@ -178,6 +178,11 @@ export default {
         type: 'warning'
       })
         .then(() => {
+          if (status===0){
+            status=1
+          }else {
+            status = 0
+          }
           onsale(id, { status: status }).then(({ data }) => {
             this.$message({
               message: '操作成功',
