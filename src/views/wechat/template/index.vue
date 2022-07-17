@@ -126,7 +126,7 @@ export default {
         tempkey: data.tempkey,
         name: data.name,
         content: data.content,
-        tempid: data.tempid,
+        temp_id: data.temp_id,
         add_time: data.add_time,
         status: data.status,
         type: data.type

@@ -43,7 +43,7 @@ export default {
         tempkey: '',
         name: '',
         content: '',
-        tempid: '',
+        temp_id: '',
         add_time: '',
         status: 1
       },
@@ -99,7 +99,7 @@ export default {
         tempkey: '',
         name: '',
         content: '',
-        tempid: '',
+        temp_id: '',
         add_time: '',
         status: ''
       }
