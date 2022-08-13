@@ -108,7 +108,7 @@ export default {
         code: data.code,
         name: data.name,
         sort: data.sort,
-        isShow: data.isShow
+        isShow: data.is_show
       }
       _this.dialog = true
     }

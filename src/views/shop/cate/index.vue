@@ -4,7 +4,7 @@
     <div class="head-container">
       <div v-if="crud.props.searchToggle">
         <!-- 搜索 -->
-        <el-input v-model="query.cateName" clearable size="small" placeholder="输入分类名称搜索" style="width: 200px;" class="filter-item" @keyup.enter.native="crud.toQuery" />
+        <el-input v-model="query.cate_name" clearable size="small" placeholder="输入分类名称搜索" style="width: 200px;" class="filter-item" @keyup.enter.native="crud.toQuery" />
         <rrOperation :crud="crud" />
       </div>
       <crudOperation :permission="permission" />
@@ -13,13 +13,13 @@
     <el-dialog append-to-body :close-on-click-modal="false" :before-close="crud.cancelCU" :visible.sync="crud.status.cu > 0" :title="crud.status.title" width="500px">
       <el-form ref="form" :model="form" :rules="rules" size="small" label-width="80px">
         <el-form-item label="分类名称">
-          <el-input v-model="form.cateName" style="width: 370px;" />
+          <el-input v-model="form.cate_name" style="width: 370px;" />
         </el-form-item>
         <el-form-item label="分类图片">
           <MaterialList v-model="picArr" type="image" :num="1" :width="150" :height="150" />
         </el-form-item>
         <el-form-item label="状态">
-          <el-radio-group v-model="form.isShow" style="width: 178px">
+          <el-radio-group v-model="form.is_show" style="width: 178px">
             <el-radio :label="1">显示</el-radio>
             <el-radio :label="0">隐藏</el-radio>
           </el-radio-group>
@@ -39,11 +39,11 @@
     <!--表格渲染-->
     <el-table ref="table" v-loading="crud.loading" :tree-props="{children: 'children', hasChildren: 'hasChildren'}" :data="crud.data" row-key="id" @select="crud.selectChange" @select-all="crud.selectAllChange" @selection-change="crud.selectionChangeHandler">
       <el-table-column :selectable="checkboxT" type="selection" width="55" />
-      <el-table-column v-if="columns.visible('cateName')" label="名称" prop="cateName" />
-      <el-table-column v-if="columns.visible('isShow')" label="状态" align="center" prop="isShow">
+      <el-table-column v-if="columns.visible('cate_name')" label="名称" prop="cate_name" />
+      <el-table-column v-if="columns.visible('is_show')" label="状态" align="center" prop="is_show">
         <template slot-scope="scope">
           <div>
-            <el-tag v-if="scope.row.isShow === 1" :type="''">显示</el-tag>
+            <el-tag v-if="scope.row.is_show === 1" :type="''">显示</el-tag>
             <el-tag v-else :type=" 'info' ">隐藏</el-tag>
           </div>
         </template>
@@ -75,7 +75,7 @@ import MaterialList from '@/components/material'
 
 // crud交由presenter持有
 const defaultCrud = CRUD({ title: '分类', url: 'shop/cate', sort: 'sort,desc', crudMethod: { ...crudDept }})
-const defaultForm = { id: null, cateName: null, pid: 0, isShow: 1 , sort:  1}
+const defaultForm = { id: null, cate_name: null, pid: 0, is_show: 1 , sort:  1}
 export default {
   name: 'Cate',
   components: { Treeselect, crudOperation, rrOperation, udOperation, MaterialList },
@@ -91,7 +91,7 @@ export default {
       picArr: [],
       depts: [],
       rules: {
-        cateName: [
+        cate_name: [
           { required: true, message: '请输入名称', trigger: 'blur' }
         ]
       },
@@ -120,15 +120,15 @@ export default {
         this.picArr = form.pic.split(',')
       }
 
-      // 获取所有部门
-      crudDept.getCates({ isShow: 1 }).then(res => {
+      // 获取所有类目
+      crudDept.getCates({ is_show: 1 }).then(res => {
         this.depts = []
         const dept = { id: 0, label: '顶级类目', children: [] }
         dept.children = res.data.content
         this.depts.push(dept)
       })
 
-      // crudDept.getCates({ isShow: 1 }).then(res => {
+      // crudDept.getCates({ is_show: 1 }).then(res => {
       //   this.depts = res.data.content.map(function(obj) {
       //     if (obj.hasChildren) {
       //       obj.children = null

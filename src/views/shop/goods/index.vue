@@ -147,7 +147,7 @@ export default {
     beforeInit() {
       this.url = 'shop/product'
       const sort = 'id,desc'
-      this.params = { page: this.page, size: this.size, sort: sort, is_show: 1, is_del: 0,cateId: this.cateId  }
+      this.params = { page: this.page, size: this.size, sort: sort, is_show: 1, is_del: 0,cate_id: this.cate_id }
       const query = this.query
       const value = query.value
       if (value) { this.params['blurry'] = value }
