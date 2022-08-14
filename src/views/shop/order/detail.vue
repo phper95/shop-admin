@@ -612,7 +612,7 @@ import eRemark from './remark'
           refund_reason: data.refund_reason,
           refund_price: data.refund_price,
           delivery_name: data.delivery_name,
-          deliverySn: data.deliverySn,
+          deliverySn: data.delivery_sn,
           delivery_type: data.delivery_type,
           delivery_id: data.delivery_id,
           gain_integral: data.gain_integral,
