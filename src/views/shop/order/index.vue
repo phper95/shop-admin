@@ -120,10 +120,10 @@
                   :src="item.productInfo.image">
                 </span>
                 <span>
-                  {{ item.productInfo.storeName }}
-                  <span v-if="item.productInfo.attrInfo">&nbsp;{{ item.productInfo.attrInfo.sku }}</span>
+                  {{ item.product_info.store_name }}
+                  <span v-if="item.product_info.attr_info">&nbsp;{{ item.product_info.attr_info.sku }}</span>
                 </span>
-                <span> | ￥{{ item.truePrice }}×{{ item.cartNum }}</span>
+                <span> | ￥{{ item.true_price }}×{{ item.cart_num }}</span>
             </div>
           </template>
         </el-table-column>

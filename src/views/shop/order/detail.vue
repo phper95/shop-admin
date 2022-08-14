@@ -59,7 +59,7 @@
           <el-col :span="4" class="table-cell">{{user_dto.nickname}}</el-col>
           <el-col :span="4" class="table-cell">{{order.pay_type_name }}</el-col>
           <el-col :span="4" class="table-cell">{{order.is_channel | formatSourceType}}</el-col>
-          <el-col :span="4" class="table-cell">{{order.pinkName }}</el-col>
+          <el-col :span="4" class="table-cell">{{order.pink_name }}</el-col>
         </el-row>
         <el-row>
           <el-col :span="4" class="table-cell-title">配送方式</el-col>
@@ -71,7 +71,7 @@
         </el-row>
         <el-row>
           <el-col :span="4" class="table-cell">{{order.shipping_type | formatshipping_type}}</el-col>
-          <el-col :span="4" class="table-cell">{{order.deliverySn | formatNull}}</el-col>
+          <el-col :span="4" class="table-cell">{{order.delivery_sn | formatNull}}</el-col>
           <el-col :span="4" class="table-cell">7天</el-col>
           <el-col :span="4" class="table-cell">{{order.gain_integral}}</el-col>
           <el-col :span="4" class="table-cell">{{order.pay_integral}}</el-col>
@@ -81,8 +81,8 @@
               title="活动信息"
               width="200"
               trigger="hover"
-              :content="order.promotionInfo">
-              <span slot="reference">{{order.promotionInfo | formatLongText}}</span>
+              :content="order.promotion_info">
+              <span slot="reference">{{order.promotion_info | formatLongText}}</span>
             </el-popover>
           </el-col>
         </el-row>
@@ -761,7 +761,7 @@ import eRemark from './remark'
       express() {
         let params ={
           "orderCode": this.order.id,
-          "shipperCode": this.order.deliverySn,
+          "shipperCode": this.order.delivery_sn,
           "logisticCode": this.order.delivery_id
         }
 
